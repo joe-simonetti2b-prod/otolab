@@ -1,0 +1,9 @@
+{
+  "appId": "fr.otolab.app",
+  "appName": "OtoLab",
+  "webDir": "www",
+  "android": { "allowMixedContent": false },
+  "plugins": {
+    "SystemBars": { "insetsHandling": "native" }
+  }
+}

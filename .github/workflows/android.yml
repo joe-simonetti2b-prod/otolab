@@ -1,0 +1,62 @@
+name: Construire l'APK
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  apk:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 21
+
+      - uses: android-actions/setup-android@v3
+
+      - name: Dépendances
+        run: npm ci
+
+      - name: Assembler l'appli web et synchroniser Android
+        run: |
+          npm run build
+          npx cap sync android
+
+      - name: Compiler l'APK signé
+        working-directory: android
+        env:
+          OTOLAB_VERSION_CODE: ${{ github.run_number }}
+        run: |
+          chmod +x gradlew
+          ./gradlew assembleRelease --no-daemon --stacktrace
+
+      - name: Renommer
+        run: cp android/app/build/outputs/apk/release/app-release.apk OtoLab.apk
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: OtoLab-apk
+          path: OtoLab.apk
+
+      - name: Publier la version
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v1.0.${{ github.run_number }}
+          name: OtoLab 1.0.${{ github.run_number }}
+          body: |
+            APK Android d'OtoLab. Sur le téléphone : télécharger **OtoLab.apk**, l'ouvrir, autoriser l'installation depuis cette source.
+            Les mises à jour s'installent par-dessus la version précédente (même signature), les scores sont conservés.
+          files: OtoLab.apk
+          make_latest: true
