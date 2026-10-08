@@ -50,7 +50,7 @@ ACT.reset0 = () => { STATS.confirm = false; renderView(); };
 ACT.reset2 = () => { ['hist', 'expTot', 'expBest', 'quiz_adulte', 'quiz_pedia', 'autotests', 'calib'].forEach(k => Store.set(k, null)); Store.set('hist', []); STATS.confirm = false; toast('Données effacées'); renderView(); };
 
 /* ---------- Application ---------- */
-const VIEWS = { sim: renderSim, learn: renderLearn, pedia: renderPedia, clinic: renderClinic, stats: renderStats };
+const VIEWS = { sim: renderSim, cab: renderCab, learn: renderLearn, pedia: renderPedia, clinic: renderClinic, stats: renderStats };
 let TAB = (location.hash || '').replace('#', '');
 if (!VIEWS[TAB]) TAB = Store.get('tab', 'sim');
 if (!VIEWS[TAB]) TAB = 'sim';

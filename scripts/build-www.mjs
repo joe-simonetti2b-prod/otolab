@@ -20,7 +20,7 @@ const base = `:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);
 body{margin:0}[hidden]{display:none!important}img{max-width:100%}
 body::before{content:'';position:fixed;top:0;left:0;right:0;height:env(safe-area-inset-top,0px);background:var(--bg);z-index:60}
 html.native{-webkit-user-select:none;user-select:none}html.native input{-webkit-user-select:text;user-select:text}`;
-const js = ['core', 'patho', 'fit', 'sim', 'learn', 'pedia', 'clinic', 'stats', 'native'].map(f => readFileSync(W + f + '.js', 'utf8')).join('\n');
+const js = ['core', 'patho', 'fit', 'sim', 'learn', 'pedia', 'clinic', 'cabinet', 'stats', 'native'].map(f => readFileSync(W + f + '.js', 'utf8')).join('\n');
 const html = `<!doctype html>
 <html lang="fr"><head>
 <meta charset="utf-8">
