@@ -19,8 +19,9 @@
       else CAB.P = null;
       renderView(); window.scrollTo(0, 0); return;
     }
+    if (TAB === 'tests' && (TS.open || TS.sim)) { ACT.tsback(); return; }
     if (TAB !== 'sim') { goTab('sim'); return; }
     App.exitApp();
   });
-  App.addListener('pause', () => { try { stopAll(); } catch (e) { } });
+  App.addListener('pause', () => { try { stopAll(); testsStop(); } catch (e) { } });
 })();

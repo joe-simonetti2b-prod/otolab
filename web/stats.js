@@ -50,7 +50,7 @@ ACT.reset0 = () => { STATS.confirm = false; renderView(); };
 ACT.reset2 = () => { ['hist', 'expTot', 'expBest', 'quiz_adulte', 'quiz_pedia', 'autotests', 'calib'].forEach(k => Store.set(k, null)); Store.set('hist', []); STATS.confirm = false; toast('Données effacées'); renderView(); };
 
 /* ---------- Application ---------- */
-const VIEWS = { sim: renderSim, cab: renderCab, learn: renderLearn, pedia: renderPedia, clinic: renderClinic, stats: renderStats };
+const VIEWS = { sim: renderSim, cab: renderCab, tests: renderTests, learn: renderLearn, pedia: renderPedia, clinic: renderClinic, stats: renderStats };
 let TAB = (location.hash || '').replace('#', '');
 if (!VIEWS[TAB]) TAB = Store.get('tab', 'sim');
 if (!VIEWS[TAB]) TAB = 'sim';
@@ -58,7 +58,7 @@ function renderView() {
   $('#view').innerHTML = VIEWS[TAB]();
   $$('.nav button').forEach(b => { const on = b.dataset.tab === TAB; b.classList.toggle('on', on); b.setAttribute('aria-current', on ? 'page' : 'false'); });
 }
-function goTab(t) { if (t !== 'clinic') stopAll(); TAB = t; Store.set('tab', t); renderView(); window.scrollTo(0, 0); }
+function goTab(t) { if (t !== 'clinic') stopAll(); if (t !== 'tests') testsStop(); TAB = t; Store.set('tab', t); renderView(); window.scrollTo(0, 0); }
 ACT.tab = a => goTab(a.dataset.tab);
 ACT.daily = () => startCase({ seed: dailySeed() });
 function dailySeed() { const d = new Date(); return 100000 + ((d.getFullYear() * 372 + d.getMonth() * 31 + d.getDate()) * 7919) % 899999; }

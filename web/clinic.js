@@ -117,6 +117,7 @@ function forkView() {
     <div class="interp">${forkInterp().map(x => `<p class="fb ${x[0]}">${x[1]}</p>`).join('')}</div>
     <div class="row gap"><button class="btn small" data-act="fkreset">Effacer</button><button class="btn small" data-act="fkcopy">Copier le résultat</button></div>
   </section>
+  <section class="card"><h3>S’entraîner</h3><p class="small">Weber, Rinne, Schwabach, Bing, Gellé et Federici sur des patients virtuels, avec correction, et les fiches animées de chaque épreuve.</p><div class="row gap wrap"><button class="btn primary" data-act="tssim" data-k="acou">Acoumétrie virtuelle</button><button class="btn" data-act="tsopen" data-id="weber">Fiches des épreuves</button></div></section>
   <section class="card"><h3>Rappel des épreuves</h3>
     <details class="fiche"><summary><span>Weber</span></summary><div class="fbody"><p>Diapason vibrant posé sur la ligne médiane (front, vertex, incisives). Le son est perçu au milieu (normal ou atteinte symétrique), du côté de la transmission, ou du côté opposé à la perception (vers la meilleure cochlée).</p></div></details>
     <details class="fiche"><summary><span>Rinne</span></summary><div class="fbody"><p>On compare la conduction osseuse (pied sur la mastoïde) et aérienne (branches devant le conduit). Positif : perçu plus longtemps ou plus fort en aérien (normal ou perception). Négatif : osseux meilleur (transmission d’au moins 20 à 30 dB à 512 Hz). Attention au faux négatif d’une oreille cophotique : masquer l’oreille opposée.</p></div></details>
